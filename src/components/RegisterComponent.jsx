@@ -1,12 +1,11 @@
 import React, {useRef} from "react";
-import {Grid, TextField, FormControlLabel, Button,Checkbox} from "@material-ui/core";
-import { Link, useHistory } from "react-router-dom";
+import {Grid, TextField, Button} from "@material-ui/core";
+import {useHistory } from "react-router-dom";
 import LinkM from '@material-ui/core/Link';
-import {Register, postNewUsser} from "../actions/authActions";
-import {useDispatch, useSelector} from "react-redux";
+import {Register} from "../actions/authActions";
+import {useDispatch} from "react-redux";
 export default function RegisterComponent(props){
     const classes = props.styles;
-    const user = useSelector(state => state.auth)
     const history = useHistory();
     const refEmail = useRef();
     const refPassword = useRef();
@@ -41,15 +40,15 @@ export default function RegisterComponent(props){
      
     }
   }
-  const postUsser =()=>{
-    try{
-      dispatch(postNewUsser(`${refEmail.current.value}`, `${refPassword.current.value}`,`${refName.current.value}`, `${refLastName.current.value}`,user))
-      alert('se hizo el post')
-      history.push("/");
-    }catch(error){
-      alert(error.message)
-    }
-  }
+  // const postUsser =()=>{
+  //   try{
+  //     dispatch(postNewUsser(`${refEmail.current.value}`, `${refPassword.current.value}`,`${refName.current.value}`, `${refLastName.current.value}`,user))
+  //     alert('se hizo el post')
+  //     history.push("/");
+  //   }catch(error){
+  //     alert(error.message)
+  //   }
+  
     return (
         <form className={props.styles.form} noValidate>
           <Grid container spacing={2}>

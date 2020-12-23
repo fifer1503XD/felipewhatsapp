@@ -1,13 +1,13 @@
 import React from "react";
 import {Route} from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux'
-import { checkActiveSession } from '../actions/authActions';
+import { useSelector} from 'react-redux'
+
 
 
 export default function PrivateRoute(props){
-    const dispatch = useDispatch();
+
     let sesionActive= useSelector(state => state.auth.sesionActive)
-    const user = useSelector(state => state.auth)
+    
 
     return (
         <Route path={props.path} render={

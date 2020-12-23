@@ -1,15 +1,13 @@
 import React from "react";
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.css';
 import {useDispatch } from 'react-redux'
 import { logout } from '../actions/authActions';
-import firebase from "../firebase";
 import {useHistory } from "react-router-dom";
 
 
 
-export default function MenuProfile(props) {
+export default function MenuProfile() {
   const dispatch = useDispatch(); 
   const history = useHistory();
   const logoutfn = async() => {

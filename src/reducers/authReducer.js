@@ -1,15 +1,12 @@
 const INITIAL_STATE = {
     user: false,
     sesionActive:false,
-    userMessenger:""
 }
 
 
 const authReducer = (prevState = INITIAL_STATE, action) => {
 
     switch(action.type){
-        case "SET_USERMESSENGER":
-            return {...prevState, userMessenger: action.userObj};
         case "SET_USER":
             return {...prevState, user: action.userObj};
         case "REGISTER":
