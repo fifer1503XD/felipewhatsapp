@@ -15,6 +15,7 @@ const setUser = (userObj) => { //Una vez que el usuario inicie sesión guardarmo
     }
 }
 
+
 export const login = (provider, email, password) => {
     return (dispatch) => {
         return new Promise(async(resolve, reject) => {
@@ -22,6 +23,7 @@ export const login = (provider, email, password) => {
                 if(provider === "email"){
                     let {user} = await firebase.auth().signInWithEmailAndPassword(email, password);
                     dispatch(setUser(user));
+                    
                 }else{
                     let googleProvider = new firebase.auth.GoogleAuthProvider();
                     let {user} = await firebase.auth().signInWithPopup(googleProvider);

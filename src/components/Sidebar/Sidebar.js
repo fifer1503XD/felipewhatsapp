@@ -8,7 +8,7 @@ import { IconButton, Avatar } from "@material-ui/core";
 import { SearchOutlined } from "@material-ui/icons";
 import { useSelector, useDispatch } from 'react-redux'
 import MenuProfile from "../menuProfile";
-import {searchUsser,searchConversation,setIdUserActive} from "../../actions/conversationActions";
+import {searchUsser,searchConversation,userActive} from "../../actions/conversationActions";
 import Profile from "../profiles";
 import ChatProfile from "../../containers/ChatsProfile";
 
@@ -24,17 +24,15 @@ const Sidebar = () => {
   const chats= useSelector(state=>state.conversation.conversations)
   const refUser = useRef();
   
-  const idActive =()=>{
-    alert('ingresa')
-    console.log(userMessenger)
-   let id= userMessenger.filter((userMessenger)=>
-   userMessenger.uid===user.user.uid)
-   let idactive= id[0]._id
-   dispatch(setIdUserActive(idactive))
-   console.log(idactive)
-  }
+  const click=()=>{
+    
+    dispatch(userActive(user,userMessenger))
+   }
+  
+    
+
   useEffect(async ()=> {
-     
+    
     try{
             dispatch(searchUsser());
             
@@ -47,8 +45,8 @@ const Sidebar = () => {
   },[] );
 
   const showMenu = () => {
+    
     setshowmenu(!showm)
-    idActive(); 
     console.log(showm)
   }
   const showProfiles = async()=> {
@@ -86,7 +84,7 @@ const Sidebar = () => {
       </div>
       <div className="sidebar__search">
         <div className="sidebar__searchContainer">
-          <SearchOutlined onClick={()=>dispatch(searchUsser())}/>
+          <SearchOutlined onClick={()=>(click())}/>
           <input placeholder="Busca o inicia un nuevo chat" type="text" 
           inputRef={refUser}
           onClick={showProfiles}

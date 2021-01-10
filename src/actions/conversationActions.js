@@ -47,6 +47,17 @@ const setMessages = (userObj) => {
         userObj
     }
 }
+export const userActive=(user,userMessenger)=>{
+    return async(dispatch)=>{
+    alert(userMessenger)
+    console.log(userMessenger)
+   let id= userMessenger.filter((userMessenger)=>
+   userMessenger.uid===user.user.uid)
+   let idactive= id[0]._id
+  await dispatch(setIdUserActive(idactive))
+   console.log(idactive)
+    }
+}
 export const searchUsser =() => {
     
        return async(dispatch)=>{
@@ -54,6 +65,7 @@ export const searchUsser =() => {
         let results = await response.json();
        
           dispatch(setUserMessenger(results))}
+          
           ;}
 
           export const searchConversation =(idUser) => {
