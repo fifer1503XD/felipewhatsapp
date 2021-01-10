@@ -1,0 +1,26 @@
+.userActiveMessage{
+  background:#21cc026b;
+  width: 28vw;
+  height: auto;
+  margin-left: 50%;
+  border-radius: 15px;
+    padding: 1%;
+    margin-bottom:1%;
+  word-wrap: break-word;
+  }
+  .userConversationMessage{
+    width: 28vw;
+    margin-right: 50%;
+    background:#4a9de4ab;
+    vertical-align: initial;
+    padding: 1%;
+    word-wrap: break-word;
+    border-radius: 15px;
+    margin-bottom:1%;
+  }
+  .messagesContainer{
+    box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      
+  }

@@ -8,7 +8,7 @@ import { IconButton, Avatar } from "@material-ui/core";
 import { SearchOutlined } from "@material-ui/icons";
 import { useSelector, useDispatch } from 'react-redux'
 import MenuProfile from "../menuProfile";
-import {searchUsser,searchConversation} from "../../actions/conversationActions";
+import {searchUsser,searchConversation,setIdUserActive} from "../../actions/conversationActions";
 import Profile from "../profiles";
 import ChatProfile from "../../containers/ChatsProfile";
 
@@ -16,6 +16,7 @@ import ChatProfile from "../../containers/ChatsProfile";
 const Sidebar = () => {
   let [showm, setshowmenu] = useState('false')
   let [showp, setshowprofile] = useState('false')
+  let [showMessages, setshowMessages] = useState('false')
   let [findUser, setFindUser] = useState('')
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth)
@@ -23,8 +24,20 @@ const Sidebar = () => {
   const chats= useSelector(state=>state.conversation.conversations)
   const refUser = useRef();
   
+  const idActive =()=>{
+    alert('ingresa')
+    console.log(userMessenger)
+   let id= userMessenger.filter((userMessenger)=>
+   userMessenger.uid===user.user.uid)
+   let idactive= id[0]._id
+   dispatch(setIdUserActive(idactive))
+   console.log(idactive)
+  }
   useEffect(async ()=> {
+     
     try{
+            dispatch(searchUsser());
+            
       await dispatch(searchConversation(user.user.uid))
       
       
@@ -35,6 +48,7 @@ const Sidebar = () => {
 
   const showMenu = () => {
     setshowmenu(!showm)
+    idActive(); 
     console.log(showm)
   }
   const showProfiles = async()=> {
@@ -42,9 +56,15 @@ const Sidebar = () => {
     setshowprofile(!showp)
     console.log(showp)
   }
+  const showConver= () => {
+    setshowMessages(!showMessages)
+    console.log(showMessages)
+  }
   const handleUser = async(event)=> {
     const user = event.target.value;
+    console.log(user)
     setFindUser(user)
+    console.log(findUser)
   
   }
    return (
@@ -71,7 +91,6 @@ const Sidebar = () => {
           inputRef={refUser}
           onClick={showProfiles}
           onChange={handleUser}/>
-          
         </div>   
       </div>
       <div className="containerprofiles"> {showp ? null:(
@@ -83,14 +102,15 @@ const Sidebar = () => {
         .map((user)=>{
             return(
                 <>
-                    <Profile name={user.firstName} lastname={user.lastName} imgProfile={user.photoUrl} /> 
+                    <Profile id={user._id} name={user.firstName} lastname={user.lastName} imgProfile={user.photoUrl} /> 
                </>
             )
         })
 
       )}</div>   
       <div className="sidebar__chats">
-      <ChatProfile/>
+      <button  onClick={showConver}>MOSTRAS CONVERSACIONES</button>
+      {showMessages ? null:(<ChatProfile />)}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import logger from "redux-logger";
 
 const rootReducer = combineReducers({conversation: conversationReducer ,auth: authReducer});
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer,applyMiddleware(thunk, logger));
 
 export default store;
 
