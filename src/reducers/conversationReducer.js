@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     userMessenger: "",
-    conversations:"",
+    conversations:[],
     conversationActive:"",
     idUserActive:"",
     userConversation:"",

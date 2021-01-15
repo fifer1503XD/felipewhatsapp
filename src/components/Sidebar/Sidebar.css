@@ -64,9 +64,21 @@
   width: 15%;
 }
 .containerprofile{
+  background: white;
+  justify-content: left;
   display: flex;
+  /* width: 100%; */
+  border-radius: 50px;
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  margin: 2%;
 }
+ 
 .nameProfile{
   margin-top:5%;
   margin-left:2%;
+}
+.containerprofiles{
+  overflow: scroll;
+  overscroll-behavior-x: auto;
+  
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState,useEffect } from "react";
 import SidebarChat from "../components/SidebarChat/SidebarChat";
 import {conversationActive,setIdUserActive} from "../actions/conversationActions";
 import { useSelector, useDispatch } from 'react-redux'
@@ -9,16 +9,25 @@ export default function ChatProfile(){
     const user = useSelector(state => state.auth)
     const chats= useSelector(state=>state.conversation.conversations)
     const userMessenger= useSelector(state=>state.conversation.userMessenger)
-    let cloneUserMessenger =JSON.parse( JSON.stringify( userMessenger ) );
-   console.log(userMessenger[0].uid)
-   let id= userMessenger.filter((userMessenger)=>
-   userMessenger.uid===user.user.uid)
-   let idactive= id[0]._id
-   dispatch(setIdUserActive(idactive))
-   
+    let [id,setId] = useState(false)
+   useEffect(()=>{
+       console.log(userMessenger)
+       if(userMessenger){
+        setId(userMessenger.filter((userMessenger)=>
+        userMessenger.uid===user.user.uid))
+       }
+   },[userMessenger])
+
+   useEffect(()=>{
+       if(id){
+        let idactive= id[0]._id
+        dispatch(setIdUserActive(idactive))
+       }
+   },[id])
     return (
         <div>
-            {chats
+            {id &&
+            chats
             .filter((chat,index)=>
             chat.members[0]===id[0]._id || chat.members[1]===id[0]._id,
 

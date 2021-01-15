@@ -49,7 +49,6 @@ const setMessages = (userObj) => {
 }
 export const userActive=(user,userMessenger)=>{
     return async(dispatch)=>{
-    alert(userMessenger)
     console.log(userMessenger)
    let id= userMessenger.filter((userMessenger)=>
    userMessenger.uid===user.user.uid)

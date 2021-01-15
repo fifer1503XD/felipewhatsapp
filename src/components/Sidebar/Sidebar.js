@@ -17,6 +17,7 @@ const Sidebar = () => {
   let [showm, setshowmenu] = useState('false')
   let [showp, setshowprofile] = useState('false')
   let [showMessages, setshowMessages] = useState('false')
+  let [containerprofiles ,setcontainerprofile] = useState('containerprofiles')
   let [findUser, setFindUser] = useState('')
   const dispatch = useDispatch();
   const user = useSelector(state => state.auth)
@@ -48,8 +49,15 @@ const Sidebar = () => {
     
     setshowmenu(!showm)
     console.log(showm)
-  }
+    if(showm==true){
+      alert(showm)
+      setcontainerprofile('conta')}
+      else{
+        setcontainerprofile('containersprofile')}
+      }
+  
   const showProfiles = async()=> {
+    dispatch(userActive(user,userMessenger))
     await dispatch(searchUsser())
     setshowprofile(!showp)
     console.log(showp)
@@ -91,7 +99,7 @@ const Sidebar = () => {
           onChange={handleUser}/>
         </div>   
       </div>
-      <div className="containerprofiles"> {showp ? null:(
+      <div className={containerprofiles}> {showp ? null:(
         userMessenger.filter((user)=>
         user.firstName
             .toLowerCase()
@@ -107,8 +115,8 @@ const Sidebar = () => {
 
       )}</div>   
       <div className="sidebar__chats">
-      <button  onClick={showConver}>MOSTRAS CONVERSACIONES</button>
-      {showMessages ? null:(<ChatProfile />)}
+      {/* <button  onClick={showConver}>MOSTRAS CONVERSACIONES</button> */}
+      <ChatProfile/>
       </div>
     </div>
   );
